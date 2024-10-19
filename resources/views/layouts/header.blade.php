@@ -55,7 +55,7 @@
                             </div>
                             <ul class="py-1" role="none">
                                 <li>
-                                    <a href="{{ route('dashboard.index') }}"
+                                    <a href="{{ route('index') }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem">Dashboard</a>
                                 </li>
@@ -80,7 +80,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="{{ route('dashboard.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                    <a href="{{ route('index') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                         <svg class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">

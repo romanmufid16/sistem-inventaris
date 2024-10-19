@@ -84,50 +84,7 @@ class PenjualanController extends Controller
         return redirect('/penjualan');
     }
 
-    // public function store(Request $request)
-    // {
-    //     $jumlahDijual = $request->input('jumlah');
-    //     $produkId = $request->input('produk_id');
-
-    //     $produks = Produk::where('id', $produkId)
-    //         ->orderBy('tanggal_masuk', 'asc')
-    //         ->first();
-
-    //     foreach ($produks as $produk)
-    //         if ($produk->stok >= $jumlahDijual) {
-    //             $produk->stok -= $jumlahDijual;
-    //             $produk->save();
-
-    //             $getProfit = ($produks->harga - $produks->modal) * $jumlahDijual;
-    //             Penjualan::create([
-    //                 'produk_id' => $request->produk_id,
-    //                 'jumlah' => $request->jumlah,
-    //                 'profit' => $getProfit,
-    //                 'tanggal_penjualan' => $request->tanggal_penjualan,
-    //             ]);
-
-    //             break;
-    //         } else {
-    //             $jumlahDijual -= $produk->stok;
-    //             $getProfit = ($produks->harga - $produks->modal) * $jumlahDijual;
-    //             Penjualan::create([
-    //                 'produk_id' => $request->produk_id,
-    //                 'jumlah' => $produk->stok,
-    //                 'profit' => $getProfit,
-    //                 'tanggal_penjualan' => $request->tanggal_penjualan,
-    //             ]);
-
-    //             $produk->stok = 0;
-    //             $produk->save();
-    //         }
-
-    //     return redirect('/penjualan');
-    // }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Penjualan $p)
     {
         //
     }
@@ -135,7 +92,7 @@ class PenjualanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Penjualan $p)
     {
         //
     }
@@ -143,7 +100,7 @@ class PenjualanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Penjualan $p)
     {
         //
     }
@@ -151,8 +108,9 @@ class PenjualanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Penjualan $p)
     {
-        //
+        $p->delete();
+        return redirect()->back();
     }
 }

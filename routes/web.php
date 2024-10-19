@@ -9,13 +9,10 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
 
-// Route::get('/', function () {
-//     return view('dashboard/index');
-// })->name('dashboard');
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect()->route('dashboard.index');
+        return redirect()->route('index');
     } else {
         return redirect()->route('loginPage');
     }
@@ -30,8 +27,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware([Authentication::class])->group(function (){
-    Route::resource('kategori', KategoriController::class);
-    Route::resource('produk', ProdukController::class);
-    Route::resource('penjualan', PenjualanController::class);
-    Route::resource('dashboard', DashboardController::class);
+    Route::prefix('dashboard')->group(function (){
+        Route::resource('kategori', KategoriController::class);
+        Route::resource('produk', ProdukController::class);
+        Route::resource('penjualan', PenjualanController::class);
+        Route::get('', [DashboardController::class, 'index'])->name('index');
+    });
 });
